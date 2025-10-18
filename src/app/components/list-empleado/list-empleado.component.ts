@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource,MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -21,7 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-list-empleado',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule,MatFormFieldModule,MatInputModule],
   templateUrl: './list-empleado.component.html',
   styleUrl: './list-empleado.component.css'
 })
@@ -30,5 +32,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class ListEmpleadoComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
