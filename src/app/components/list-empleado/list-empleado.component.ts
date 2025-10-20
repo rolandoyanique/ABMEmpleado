@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {MatTableDataSource,MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -23,18 +25,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-list-empleado',
   standalone: true,
-  imports: [MatTableModule,MatFormFieldModule,MatInputModule],
+  imports: [MatTableModule,MatSortModule,MatFormFieldModule,MatInputModule,MatPaginator,MatPaginatorModule],
   templateUrl: './list-empleado.component.html',
   styleUrl: './list-empleado.component.css'
 })
 
 
 
-export class ListEmpleadoComponent {
+export class ListEmpleadoComponent implements AfterViewInit {
+  
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
