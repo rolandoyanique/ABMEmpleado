@@ -6,28 +6,12 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { Empleado } from '../../models/empleados';
 import { EmpleadoService } from '../../services/empleado.service';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { CommonModule } from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-list-empleado',
   standalone: true,
-  imports: [MatTableModule,MatSortModule,MatFormFieldModule,MatInputModule,MatPaginator,MatPaginatorModule],
+  imports: [MatTableModule,MatIconModule,CommonModule,MatSortModule,MatFormFieldModule,MatInputModule,MatPaginator,MatPaginatorModule],
   templateUrl: './list-empleado.component.html',
   styleUrl: './list-empleado.component.css'
 })
@@ -36,8 +20,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class ListEmpleadoComponent implements AfterViewInit {
   
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['nombreCompleto', 
+                                'correo', 
+                                'estadoCivil', 
+                                'fechaIngreso',
+                                'sexo',
+                                'telefono',
+                                'acciones'];
+  dataSource = new MatTableDataSource<Empleado>;
   listEmpleado!:Empleado[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -55,6 +45,11 @@ export class ListEmpleadoComponent implements AfterViewInit {
   }
   cargarEmpleados(){
     this.listEmpleado=this.Empleado.getEmpleados();
+    this.dataSource = new MatTableDataSource<Empleado>(this.listEmpleado);
     console.log(this.listEmpleado);
+  }
+  eliminarEmpleado(index:number){
+    this.Empleado.eliminarEmpleado(index);
+    this.cargarEmpleados();
   }
 }

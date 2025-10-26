@@ -67,4 +67,7 @@ export class EmpleadoService {
   getEmpleados(){
     return this.lisEmpleado.slice();
   }
+  eliminarEmpleado(index:number){
+    this.lisEmpleado.splice(index,1);
+  }
 }
