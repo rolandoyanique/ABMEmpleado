@@ -1,0 +1,31 @@
+.dialog-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dialog-icon {
+  font-size: 28px;
+}
+
+.dialog-content {
+  text-align: center;
+  font-size: 1.05rem;
+  margin: 10px 0 20px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+
+button[mat-stroked-button],
+button[mat-flat-button] {
+  min-width: 100px;
+}
