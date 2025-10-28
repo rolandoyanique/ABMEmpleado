@@ -2,3 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+simple-snack-bar {
+  justify-content: center !important; /* centra el contenido horizontalmente */
+  text-align: center;
+}
