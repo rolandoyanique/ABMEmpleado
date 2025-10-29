@@ -12,20 +12,20 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { MensajeConfirmacionComponent } from '../shared/mensaje-confirmacion/mensaje-confirmacion.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { RouterLink,RouterLinkActive  } from "@angular/router";
 @Component({
   selector: 'app-list-empleado',
   standalone: true,
-  imports: [MatTableModule,
-            MatIconModule,
-            CommonModule,
-            MatButtonModule,
-            MatSortModule,
-            MatFormFieldModule,
-            MatInputModule,
-            MatPaginator,
-            MatPaginatorModule,
-            MatSnackBarModule,
-          ],
+  imports: [ MatTableModule,
+  MatIconModule,
+  CommonModule,
+  MatButtonModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSnackBarModule,
+  RouterLink,RouterLinkActive],
   templateUrl: './list-empleado.component.html',
   styleUrl: './list-empleado.component.css'
 })

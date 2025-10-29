@@ -1,6 +1,11 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes'; // 🔥 este import es clave
+import { provideAnimations } from '@angular/platform-browser/animations'; // si usas Angular Material
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),              // ✅ Esto habilita las rutas
+    provideAnimations(),                // Necesario para Angular Material
+  ],
+};
