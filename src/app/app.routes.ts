@@ -3,9 +3,8 @@ import { AddEditEmpleadoComponent } from './components/add-edit-empleado/add-edi
 import { ListEmpleadoComponent } from './components/list-empleado/list-empleado.component';
 
 export const routes: Routes = [
-    {path:'',component:ListEmpleadoComponent},
-    {path:'add',component:AddEditEmpleadoComponent},
-    {path:'edit/:id',component:AddEditEmpleadoComponent},
-    {path:'**',component:ListEmpleadoComponent},
+    { path: '', component: ListEmpleadoComponent },
+    { path: 'add', component: AddEditEmpleadoComponent },
+    { path: 'edit/:id', component: AddEditEmpleadoComponent },
+    { path: '**', redirectTo: '' }, // ← Mejor usar redirectTo en lugar de component
 ];
-
