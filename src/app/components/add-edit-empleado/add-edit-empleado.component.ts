@@ -7,7 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule,provideNativeDateAdapter} from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatRadioModule} from '@angular/material/radio';
 @Component({
   selector: 'app-add-edit-empleado',
   standalone: true,
@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
             MatFormFieldModule, 
             MatInputModule, 
             MatSelectModule,
-          MatIconModule],
+          MatIconModule,MatRadioModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './add-edit-empleado.component.html',
   styleUrl: './add-edit-empleado.component.css'
